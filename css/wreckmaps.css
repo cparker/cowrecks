@@ -1,0 +1,76 @@
+      body {
+        padding-top: 60px;
+      }
+
+      #map img {
+        max-width: none;
+      }
+
+      .map {
+        height:625px;
+        width:95%;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+        border: 4px #d0d0d0 solid;
+        margin:0px;
+        padding:0px;
+      }
+
+      .sideImg {
+        position:relative;
+        left:5px;
+        top:2px;
+      }
+
+      .sidebutton {
+        margin-bottom:5px;
+        margin-top:5px;
+        width:180px;
+      }
+
+      .mapPopup {
+        border: 2px gray solid;
+        border-radius: 5px;
+        padding: 5px;
+        margin-right: 10px;
+      }
+
+      #directions {
+        width: 350px;
+      }
+
+      a.disabledlink {
+        pointer-events: none;
+        cursor: default;
+        color:gray;
+      }
+
+      .loader {
+        position: relative;
+        left: 2px;
+        bottom: 1px;
+        visibility:hidden;
+      }
+
+      .backgray {
+        background-color:#e1e1e1;
+      }
+
+      .mycontainer {
+        margin-left:20px;
+      }
+
+      .rightnav {
+        position:relative;
+        right:30px;
+      }
+
+      .mapbar {
+        width: 95%;
+        background-color: #d0d0d0;
+        border: 4px #d0d0d0 solid;
+      }
+
+      #right-nav-spacer {
+        height:20px;
+      }

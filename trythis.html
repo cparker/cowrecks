@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Colorado Wreck Hunting</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <script type="text/javascript" 
+      src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
+    </script>
+
+    <script type="text/javascript"
+      src="underscore-min.js">
+    </script>
+
+    <script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places,weather">
+    </script>
+
+    <!--script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false">
+    </script-->
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    <script> google.load("earth", "1"); </script>
+
+    <link href="css/wreckmaps.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+
+    <script type="text/javascript" src="js/wreckmaps-data.js">
+    </script>
+
+    <script type="text/javascript" src="js/wreckmaps-main.js">
+    </script>
+
+  </head>
+
+
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Colorado Wreck Hunting</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <!--li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li-->
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div> <!-- navbar -->
+
+
+    <!--  ============= MAIN CONTAINER ==================-->
+    <div class="container">
+      <div class="row">
+
+
+        <!-- ================== MAP ====================== -->
+        <div class="span9">
+          <div id="map" class="map">
+          </div>
+          <div id="mapbar" class="mapbar">
+            <div class='container'>
+              <div class='span4'>
+                <form class="form-search">
+                  <input id='searchField' type="text" class="input-medium search-query">
+                  <button 
+                    title='Google Search'
+                    data-content='Show things on the map like restaurants, gas stations, or campgrounds.  Go ahead.  Try it.'
+                    id='searchButton' type='submit' class='btn'>Search Google</button>
+                </form>
+              </div>
+
+              <div class='span4'>
+                <form class="form-search">
+                  <input id='wreckSearchField' type="text" class="input-medium search-query">
+                  <button 
+                    title='Wreck Search'
+                    data-content='Search for aircraft names and select one to zoom in'
+                    id='wreckSearchButton' type='submit' class='btn'>Search Wrecks</button>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- ================== right nav ====================== -->
+        <div class="span3">
+
+          <div class="rightnav">
+            <h4 class="right-heading">Show / Hide crash sites from different sources</h4>
+
+            <button 
+              title="Located Crash Sites"
+              data-content="Toggle display of found crash sites according to coloradowreckchasers.com.  Click markers for detailed info."
+              id="viewFound" 
+              class="sidebutton btn btn-info" 
+              data-toggle="button">Hide Located Sites</button>
+              <img 
+                class='sideImg' 
+                src='http://labs.google.com/ridefinder/images/mm_20_gray.png'/><br/>
+
+            <button 
+              title="Military Crash Sites"
+              data-content="Toggle display of military only crash sites, according to coloradowreckchasers.com.  Click markers for detailed info."
+              id="allMil" 
+              class="sidebutton btn btn-info" 
+              data-toggle="button">Hide Military Crash Sites</button>
+              <img 
+                class='sideImg' 
+                src='http://labs.google.com/ridefinder/images/mm_20_orange.png'/><br/>
+
+            <button 
+              title="All Crash Sites"
+              data-content="Toggle display of the complete civil and military crash sites, according to coloradowreckchasers.com.  Click markers for detailed info."
+              id="complete" 
+              class="sidebutton btn btn-info" data-toggle="button">Hide Civil Air Patrol Sites</button>
+              <img 
+                class='sideImg' 
+                src='http://labs.google.com/ridefinder/images/mm_20_green.png'/><br/>
+
+            <button 
+              title="Aviation Archeology Data"
+              data-content="Toggle display of wreck locations from http://aviationarcheology.com.  These display as 5mi radius circles because the location data is inaccurate"
+              id="arch" 
+              class="sidebutton btn btn-info" 
+              data-loading-text="loading..." 
+              data-toggle="button">Aviation archeology sites</button>
+                <img class='sideImg' 
+                src='circ.png'/><br/>
+
+              <div id="right-nav-spacer">&nbsp;</div>
+
+              <h4 class="right-heading">Quickly zoom to a few specific sites</h4>
+
+              <div class="btn-group">
+                <button 
+                  title='Zoom to Site'
+                  data-content='Zoom to a few interesting sites'
+                  class="btn dropdown-toggle btn-info" 
+                  data-toggle="dropdown">Shortcut zoom to:<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a id='zoomCirrus' href="#">Mt. Cirrus F100</a></li>
+                  <li><a id='zoomYale' href="#">Mt. Yale C-47</a></li>
+                  <li><a id='zoomTaylor' href="#">Taylor Park B-24</a></li>
+                </ul>
+              </div> <!-- btn group -->
+
+              <button 
+                title='Weather'
+                data-content='Show current weather conditions.  Click weather icons for more info.'
+                id='toggleWeather' 
+                class='sidebutton btn btn-info' 
+                data-toggle='button'>Show weather info</button><br/>
+
+              <button 
+                title='Flickr Photos'
+                data-content='Show flickr photos within the current map window'
+                id='flickrFullScreen' 
+                class='sidebutton btn btn-info' 
+                data-loading-text='loading...'>Full-screen flickr search</button><br/>
+
+              <button 
+                id='reset' 
+                class='sidebutton btn btn-info' >Reset</button><br/>
+
+          </div>
+        </div>
+
+      </div> <!-- main container -->
+    </div>
+
+
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--script src="js/bootstrap-transition.js"></script-->
+    <!--script src="js/bootstrap-alert.js"></script-->
+    <!--script src="js/bootstrap-modal.js"></script-->
+    <script src="js/bootstrap-dropdown.js"></script>
+    <!--script src="js/bootstrap-scrollspy.js"></script-->
+    <!--script src="js/bootstrap-tab.js"></script-->
+    <script src="js/bootstrap-tooltip.js"></script>
+    <script src="js/bootstrap-popover.js"></script>
+    <script src="js/bootstrap-button.js"></script>
+    <script src="js/sprintf-0.7-beta1.js"></script>
+    <!--script src="js/bootstrap-collapse.js"></script-->
+    <!--script src="js/bootstrap-carousel.js"></script-->
+    <script src="js/bootstrap-typeahead.js"></script>
+
+  </body>
+</html>
