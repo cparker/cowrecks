@@ -1,0 +1,35 @@
+{
+  "name": "cowrecks",
+  "version": "1.0.0",
+  "description": "Colorado wreck chasing google map",
+  "main": "server.js",
+  "engines" : {
+    "node" : "6.1"
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "morgan": "^1.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cparker/cowrecks.git"
+  },
+  "keywords": [
+    "colorado",
+    "wreck",
+    "chasing",
+    "google",
+    "map"
+  ],
+  "author": "cp@cjparker.us",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cparker/cowrecks/issues"
+  },
+  "homepage": "https://github.com/cparker/cowrecks#readme"
+}
